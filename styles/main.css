@@ -87,6 +87,20 @@ h1 {
   color: lightgray;
 }
 
+.pulse-dwarf {
+  animation: pulse-dwarf 0.5s infinite;
+  animation-direction: alternate;
+}
+
+@keyframes pulse-dwarf {
+  0% {
+    color: #001f3f00;
+  }
+  100% {
+    color: lightgray;
+  }
+}
+
 .goblin {
   color: greenyellow;
 }
@@ -105,18 +119,8 @@ h1 {
   }
 }
 
-.pulse-dwarf {
-  animation: pulse-dwarf 0.5s infinite;
-  animation-direction: alternate;
-}
-
-@keyframes pulse-dwarf {
-  0% {
-    color: #001f3f00;
-  }
-  100% {
-    color: lightgray;
-  }
+.rumble {
+  animation: rumble .5s infinite linear;
 }
 
 @keyframes rumble {
@@ -126,10 +130,6 @@ h1 {
   60% {-webkit-transform: translate(-1px, -2px) rotate(0deg);}
   80% {-webkit-transform: translate(1px, 1px) rotate(1deg);} 
   100% {-webkit-transform: translate(2px, -1px) rotate(-1deg);} 
-}
-
-.rumble {
-  animation: rumble .5s infinite linear;
 }
 
 .dwarf-win-text {
@@ -151,4 +151,24 @@ h1 {
   font-family: 'MedievalSharp', cursive;
   animation: pulse-goblin 0.5s infinite;
   animation-direction: alternate;
+}
+
+.tie-text {
+  color: #001f3f00;
+}
+
+.tie-pulse {
+  color: white;
+  font-family: 'MedievalSharp', cursive;
+  animation: pulse-tie 0.5s infinite;
+  animation-direction: alternate;
+}
+
+@keyframes pulse-tie {
+  0% {
+    color: #001f3f00;
+  }
+  100% {
+    color: white;
+  }
 }

@@ -10,6 +10,7 @@ function init(){
   const goblin = 'goblin'
   let currentPlayer = null
   let currentPosition = null
+  let addDiscClicks = 0
 
   //SOUND ELEMENTS
   const dwarfClick = document.getElementById('dwarf-click')
@@ -24,8 +25,6 @@ function init(){
   const dwarfWinImg = document.createElement('img')
   dwarfWinImg.src = 'assets/dwarfcelebrate.jpeg'
   dwarfWinImg.width = '600'
-  const dwarfWinTxt = document.createTextNode('Dwarves Win!')
-  dwarfWinTxt.className = 'dwarf-win'
   const goblinWinImg = document.createElement('img')
   goblinWinImg.src = 'assets/goblin-win.jpeg'
   goblinWinImg.width = '600'
@@ -51,29 +50,29 @@ function init(){
     createGrid()
     console.log('Game Started')
   }
-  // Function for disc appear. - On hover.
-  function hoverDiscEnter(e){
-    console.log('hovered -->', e.target)
-    e.target.classList.toggle(currentPlayer)
-  }
-  // //Function for removing disc on hover.
+  // // Function for disc appear. - On hover. Not Working :(
+  // function hoverDiscEnter(e){
+  //   console.log('hovered -->', e.target)
+  //   e.target.classList.toggle(currentPlayer)
+  // }
+  // //Function for removing disc on hover. Not Worling :(
   // function hoverDiscLeave(e){
   //   e.target.classList.add(currentPlayer)
   // }
   //Function for mouse click sound effect.
   function clickNoise(){
     if (currentPlayer === dwarf){
-      dwarfClick.volume = 0.3
+      dwarfClick.volume = 0.2
       dwarfClick.play()
     } else if (currentPlayer === goblin){
-      goblinClick.volume = 0.3
+      goblinClick.volume = 0.2
       goblinClick.play()
     }
   }
   //Function for Background Music
   function playBgMusic(){
     bgMusic.loop = true
-    bgMusic.volume = 0.3
+    bgMusic.volume = 0.2
     bgMusic.play()
   }
   // Function for adding disc to grid. - When clicked.
@@ -85,7 +84,6 @@ function init(){
       currentPosition = cells.indexOf(e.target)
       console.log('Disc added -->', e.target)
       console.log('Current position -->', currentPosition)
-      // setInterval(discFall, 50)
       clickNoise()
       discFall()
       switchPlayer()
@@ -105,13 +103,11 @@ function init(){
   function switchPlayer(){
     if (currentPlayer === dwarf){
       checkWin()
-      // checkTie()
       currentPlayer = goblin
       goblinTitle.classList.toggle('pulse-goblin')
       dwarfTitle.classList.toggle('pulse-dwarf')
     } else if (currentPlayer === goblin) {
       checkWin()
-      // checkTie()
       currentPlayer = dwarf
       goblinTitle.classList.toggle('pulse-goblin')
       dwarfTitle.classList.toggle('pulse-dwarf')
@@ -145,15 +141,27 @@ function init(){
       displayWinner()
     } else if (currentPosition % width >= 3 && cells[currentPosition + 6] !== cells[-1] && cells[currentPosition + 6].classList.contains(currentPlayer) && cells[currentPosition + 12] !== cells[-1] && cells[currentPosition + 12].classList.contains(currentPlayer) && cells[currentPosition + 18] !== cells[-1] && cells[currentPosition + 18].classList.contains(currentPlayer)){
       displayWinner()
+    } else if (addDiscClicks >= 41){
+      displayTie()
     }
   }
   // Function for tie condition logic. - Full grid and win condition not met.
-  // function checkTie(classList){
-  //   if (cells.every(classList) === dwarf || goblin){
-  //     return true,
-  //     console.log('Tie!')
-  //   }
-  // }
+  function trackClicks(){
+    addDiscClicks += 1
+    console.log('Click added', addDiscClicks)
+  }
+  //Function for display Tie.
+  function displayTie(){
+    reloadTimeout()
+    document.querySelector('.dwarf-win-text').remove()
+    document.querySelector('.goblin-win-text').remove()
+    document.querySelector('.tie-text').classList.toggle('tie-pulse')
+    if (currentPlayer === dwarf){
+      goblinTitle.classList.toggle('pulse-goblin')
+    } else if (currentPlayer === goblin){
+      dwarfTitle.classList.toggle('pulse-dwarf')
+    }
+  }
   //Remove Grid Timeout Function
   function removeGridTimeout(){
     setTimeout(removeGrid, 1000)
@@ -179,7 +187,6 @@ function init(){
     document.querySelector('.grid-wrapper').appendChild(dwarfWinImg)
     document.querySelector('.grid-wrapper').style.border = '2px solid lightgray'
     document.querySelector('.dwarf-win-text').classList.toggle('dwarf-win')
-    // button.classList.toggle('button-invis')
   }
   //Goblin Win Timeout Function
   function addGoblinBgTimeout(){
@@ -190,19 +197,18 @@ function init(){
     document.querySelector('.grid-wrapper').appendChild(goblinWinImg)
     document.querySelector('.grid-wrapper').style.border = '2px solid greenyellow'
     document.querySelector('.goblin-win-text').classList.toggle('goblin-win')
-    // button.classList.toggle('button-invis')
   }
   // Function for displaying winner! - Remove/overlay the grid with
   function displayWinner(){
     removeGridTimeout()
     reloadTimeout()
     if (currentPlayer === dwarf){
-      dwarfLaugh.volume = 0.3
+      dwarfLaugh.volume = 0.2
       dwarfLaugh.play()
       addDwarfBgTimeout()
       goblinTitle.classList.toggle('pulse-goblin')
     } else if (currentPlayer === goblin){
-      goblinLaugh.volume = 0.3
+      goblinLaugh.volume = 0.2
       goblinLaugh.play()
       addGoblinBgTimeout()
       dwarfTitle.classList.toggle('pulse-dwarf')
@@ -210,9 +216,10 @@ function init(){
     }
   }
   // --- EVENTS
-  grid.addEventListener('mouseenter', hoverDiscEnter)
+  // grid.addEventListener('mouseenter', hoverDiscEnter)
   // grid.addEventListener('mouseleave', hoverDiscLeave)
   grid.addEventListener('click', addDisc)
+  grid.addEventListener('click', trackClicks)
   button.addEventListener('click', start)
 }
 
