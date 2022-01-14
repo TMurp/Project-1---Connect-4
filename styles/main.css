@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../assets/background.jpeg');
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+h1 {
+  font-family: 'MedievalSharp', cursive;
+}
+
+#bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+  font-family: 'MedievalSharp', cursive;
+}
+
+.button {
+  font-family: 'MedievalSharp', cursive;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  background-color: grey;
+}
+.button-invis {
+  color: #001f3f00;
+  background-color: #001f3f00;
+  border-color: #001f3f00;
+}
+
+.grid-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.grid {
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  height: 600px;
+  color: #001f3f00;
+  background: transparent;
+}
+
+.grid div {
+  border: 1px solid lightgrey;
+  flex-grow: 1;
+  height: 16.6666666667%;
+  width: 14.2857142857%;
+  color: #001f3f00;
+}
+
+.grid div.goblin {
+  background-image: url('../assets/goblindisc4.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: rumble .2s 1 linear;
+  color: #001f3f00;
+}
+
+.grid div.dwarf {
+  background-image: url('../assets/dwarfdisc.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: rumble .2s 1 linear;
+  color: #001f3f00;
+}
+
+.dwarf {
+  color: lightgray;
+}
+
+.goblin {
+  color: greenyellow;
+}
+
+.pulse-goblin {
+  animation: pulse-goblin 0.5s infinite;
+  animation-direction: alternate;
+}
+
+@keyframes pulse-goblin {
+  0% {
+    color: #001f3f00;
+  }
+  100% {
+    color: greenyellow;
+  }
+}
+
+.pulse-dwarf {
+  animation: pulse-dwarf 0.5s infinite;
+  animation-direction: alternate;
+}
+
+@keyframes pulse-dwarf {
+  0% {
+    color: #001f3f00;
+  }
+  100% {
+    color: lightgray;
+  }
+}
+
+@keyframes rumble {
+  0% {-webkit-transform: rotate(0deg);}
+  20% {-webkit-transform: translate(2px, 0px) rotate(-1deg);}
+  40% {-webkit-transform: translate(1px, -1px) rotate(1deg);}
+  60% {-webkit-transform: translate(-1px, -2px) rotate(0deg);}
+  80% {-webkit-transform: translate(1px, 1px) rotate(1deg);} 
+  100% {-webkit-transform: translate(2px, -1px) rotate(-1deg);} 
+}
+
+.rumble {
+  animation: rumble .5s infinite linear;
+}
+
+.dwarf-win-text {
+  color: #001f3f00;
+}
+
+.dwarf-win {
+  color: lightgray;
+  font-family: 'MedievalSharp', cursive;
+  animation: pulse-dwarf 0.5s infinite;
+  animation-direction: alternate;
+}
+
+.goblin-win-text {
+  color: #001f3f00;
+}
+.goblin-win {
+  color: greenyellow;
+  font-family: 'MedievalSharp', cursive;
+  animation: pulse-goblin 0.5s infinite;
+  animation-direction: alternate;
+}
