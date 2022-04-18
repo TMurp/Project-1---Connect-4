@@ -119,8 +119,8 @@ Event listeners, I used the click event listener for three different purposes on
 
 Email - tommurphyse@gmail.com
 
-Social - linkedin.com/in/tom-j-murphy/
+Social - [linkedin.com/in/tom-j-murphy/](https://www.linkedin.com/in/tom-j-murphy/)
 
 Project Link - https://bit.ly/3pqC23t
 
-GitHub - github.com/TMurp
+GitHub - [github.com/TMurp]([github.com/TMurp)
