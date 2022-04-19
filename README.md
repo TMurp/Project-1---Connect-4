@@ -121,6 +121,6 @@ Email - tommurphyse@gmail.com
 
 Social - [linkedin.com/in/tom-j-murphy/](https://www.linkedin.com/in/tom-j-murphy/)
 
-Project Link - https://bit.ly/3pqC23t
+Project Link - [bit.ly/3pqC23t](https://bit.ly/3pqC23t)
 
 GitHub - [github.com/TMurp]([github.com/TMurp)
